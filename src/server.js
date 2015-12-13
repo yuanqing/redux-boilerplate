@@ -1,4 +1,5 @@
 import compression from 'compression';
+import DocumentMeta from 'react-document-meta';
 import express from 'express';
 import { fetchAllData } from 'fetch-data';
 import { readFileSync } from 'fs';
@@ -51,6 +52,7 @@ export default function(webpackIsomorphicTools) {
             res.status(statusCode);
           }
           res.send(template({
+            meta: DocumentMeta.renderAsHTML(),
             app: renderToString(
               <Provider store={store}>
                 <RoutingContext {...renderProps} />

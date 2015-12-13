@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DocumentMeta from 'react-document-meta';
 import { connect } from 'react-redux';
 import fetchData from 'fetch-data';
 
@@ -20,6 +21,7 @@ export default class Products extends Component {
     var items = this.props.products.items;
     return items && items.length > 0 ? (
       <div className="products">
+        <DocumentMeta title="Products" />
         {items.map((product) => {
           return (
             <Product
