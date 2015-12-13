@@ -3,10 +3,7 @@ var resolve = require('path').resolve;
 var webpack = require('webpack');
 var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 
-var config = require('../config');
-
-var host = config.host;
-var port = config.port + 1;
+var config = require('../config').development.webpackDevServer;
 
 var rootDirectory = resolve(__dirname, '..');
 
@@ -32,7 +29,7 @@ module.exports = {
   context: rootDirectory,
   entry: {
     'main': [
-      'webpack-hot-middleware/client?path=http://' + host + ':' + port + '/__webpack_hmr',
+      'webpack-hot-middleware/client?path=http://' + config.host + ':' + config.port + '/__webpack_hmr',
       './src/client.js'
     ]
   },
@@ -40,7 +37,7 @@ module.exports = {
     path: outputPath,
     filename: '[name]-[hash].js',
     chunkFilename: '[name]-[chunkhash].js',
-    publicPath: 'http://' + host + ':' + port + '/dist/'
+    publicPath: 'http://' + config.host + ':' + config.port + '/' + outputDirectoryName + '/'
   },
   module: {
     loaders: [

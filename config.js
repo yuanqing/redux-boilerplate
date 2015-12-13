@@ -1,4 +1,18 @@
 module.exports = {
-  host: process.env.HOST || 'localhost',
-  port: process.env.PORT || 4200
+  development: {
+    app: {
+      host: 'localhost',
+      port: 4200
+    },
+    webpackDevServer: {
+      host: 'localhost',
+      port: 4201
+    }
+  },
+  production: {
+    app: {
+      host: 'localhost',
+      port: 4200
+    }
+  }
 };

@@ -22,7 +22,6 @@ const getStatusCode = (routes) => {
   });
 };
 
-const port = config.port;
 const rootDirectory = resolve(__dirname, '..');
 
 const template = lodashTemplate(readFileSync(resolve(__dirname, 'template.html'), 'utf8'));
@@ -66,8 +65,9 @@ export default function(webpackIsomorphicTools) {
         });
     });
   });
+  const port = config[process.env.NODE_ENV || 'development'].app.port;
   app.listen(port, () => {
-    console.info('Application server listening on port %d', port);
+    console.info('App server listening on port %d', port);
   });
 
 }
