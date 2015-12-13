@@ -17,6 +17,7 @@ $ npm start
 - Linting
 - Tests
 - Code splitting / [dynamic routing](https://github.com/rackt/react-router/blob/master/docs/guides/advanced/DynamicRouting.md)
+- Authentication / sessions / authenticated API calls
 - Refactor configuration (replace `development` with `local`)
 - [Feature toggles](https://github.com/petehunt/webpack-howto#6-feature-flags)
 - [Normalizr](https://github.com/gaearon/normalizr)
