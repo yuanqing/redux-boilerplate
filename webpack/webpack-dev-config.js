@@ -29,7 +29,7 @@ module.exports = {
   context: rootDirectory,
   entry: {
     'main': [
-      'webpack-hot-middleware/client?path=http://' + config.host + ':' + config.port + '/__webpack_hmr',
+      'webpack-hot-middleware/client?path=' + config.protocol + '://' + config.host + ':' + config.port + '/__webpack_hmr',
       './src/client.js'
     ]
   },
@@ -37,7 +37,7 @@ module.exports = {
     path: outputPath,
     filename: '[name]-[hash].js',
     chunkFilename: '[name]-[chunkhash].js',
-    publicPath: 'http://' + config.host + ':' + config.port + '/' + outputDirectoryName + '/'
+    publicPath: config.protocol + '://' + config.host + ':' + config.port + '/' + outputDirectoryName + '/'
   },
   module: {
     loaders: [

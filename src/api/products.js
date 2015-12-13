@@ -1,7 +1,5 @@
-import fetch from 'isomorphic-fetch';
+import fetch from '../fetch';
 
 export function getAllProducts(query) {
-  return fetch('http://localhost:3000/products').then(function(response) {
-    return Promise.resolve(response.json());
-  });
+  return fetch('products');
 }
