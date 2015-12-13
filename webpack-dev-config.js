@@ -12,6 +12,11 @@ var babelrcPath = resolve(__dirname, '.babelrc');
 var babelrc = JSON.parse(readFileSync(babelrcPath, 'utf8'));
 var babelLoaderQuery = Object.assign({}, babelrc,
   babelrc.env && babelrc.env.development || {});
+babelLoaderQuery.extra['react-transform'].transforms.push({
+  transform: 'react-transform-hmr',
+  imports: ['react'],
+  locals: ['module']
+});
 delete babelLoaderQuery.env;
 
 module.exports = {
