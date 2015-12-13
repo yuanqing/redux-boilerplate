@@ -18,7 +18,7 @@ import Product from '../components/Product';
 export default class Products extends Component {
   render() {
     var items = this.props.products.items;
-    return items.length > 0 ? (
+    return items && items.length > 0 ? (
       <div className="products">
         {items.map((product) => {
           return (
