@@ -9,7 +9,13 @@
     "url": "git://github.com/yuanqing/redux-boilerplate.git"
   },
   "scripts": {
-    "start": "concurrent --kill-others \"node webpack/webpack-dev-server.js\" \"node src/boot.js\""
+    "clean": "rimraf build",
+    "dev": "npm run dev:run",
+    "dev:run": "NODE_ENV=development concurrent --kill-others \"node webpack/webpack-dev-server.js\" \"node src/boot.js\"",
+    "prod": "npm run clean && npm run build-prod && npm run-prod",
+    "prod:build": "NODE_ENV=production webpack --config webpack/webpack-prod-config.js --colors --display-error-details --verbose",
+    "prod:run": "NODE_ENV=production node src/boot.js",
+    "start": "npm run dev:run"
   },
   "dependencies": {
     "compression": "1.6.0",
@@ -44,6 +50,7 @@
     "react-transform-hmr": "1.0.1",
     "redbox-react": "1.2.0",
     "redux-devtools": "2.1.5",
+    "rimraf": "2.4.4",
     "sass-loader": "3.1.2",
     "strip-loader": "0.1.0",
     "style-loader": "0.13.0",
