@@ -11,10 +11,15 @@ import { match, RoutingContext } from 'react-router';
 import serveFavicon from 'serve-favicon';
 import createLocation from 'history/lib/createLocation';
 
-import config from './config';
+import config from '../config';
 import routes from './routes';
 import reducer from './reducer';
 import createStore from './create-store';
+import webpackDevConfig from '../webpack-dev-config';
+
+import webpack from 'webpack';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
 
 const getStatusCode = (routes) => {
   return routes.reduce((previousRoute, currentRoute) => {
@@ -29,6 +34,16 @@ app.disable('x-powered-by');
 app.use(compression());
 
 app.use(serveFavicon(resolve(__dirname, '..', 'assets', 'favicon.ico')));
+
+const isDevelopment = process.env.NODE_ENV !== 'production';
+if (isDevelopment) {
+  const compiler = webpack(webpackDevConfig);
+  app.use(webpackDevMiddleware(compiler, {
+    noInfo: true,
+    publicPath: webpackDevConfig.output.publicPath
+  }));
+  app.use(webpackHotMiddleware(compiler));
+}
 
 app.use('/assets', express.static(resolve(__dirname, '..', 'assets')));
 app.use('/build', express.static(resolve(__dirname, '..', 'build')));

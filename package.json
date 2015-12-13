@@ -9,8 +9,8 @@
     "url": "git://github.com/yuanqing/redux-boilerplate.git"
   },
   "scripts": {
-    "build": "webpack",
-    "start": "npm run build && node src"
+    "build-dev": "webpack --config webpack-dev-config.js",
+    "start": "npm run build-dev && node src/boot.js"
   },
   "dependencies": {
     "babel-core": "5.8.33",
@@ -39,8 +39,8 @@
     "react-transform-catch-errors": "1.0.0",
     "react-transform-hmr": "1.0.1",
     "redbox-react": "1.2.0",
-    "webpack-dev-middleware": "^1.4.0",
-    "webpack-hot-middleware": "^2.6.0"
+    "webpack-dev-middleware": "1.4.0",
+    "webpack-hot-middleware": "2.6.0"
   },
   "private": true
 }
