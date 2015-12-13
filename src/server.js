@@ -1,5 +1,6 @@
 import compression from 'compression';
 import express from 'express';
+import { fetchAllData } from 'fetch-data';
 import { readFileSync } from 'fs';
 import lodashTemplate from 'lodash.template';
 import { resolve } from 'path';
@@ -10,21 +11,16 @@ import { match, RoutingContext } from 'react-router';
 import serveFavicon from 'serve-favicon';
 import createLocation from 'history/lib/createLocation';
 
+import config from './config';
 import routes from './routes';
 import reducer from './reducer';
 import createStore from './create-store';
-import { fetchAllData } from 'fetch-data';
 
 const getStatusCode = (routes) => {
   return routes.reduce((previousRoute, currentRoute) => {
     return currentRoute.status || previousRoute;
   });
 };
-
-// TODO
-const PORT = 4242;
-
-const template = lodashTemplate(readFileSync(resolve(__dirname, 'index.html'), 'utf8'));
 
 const app = express();
 
@@ -36,6 +32,8 @@ app.use(serveFavicon(resolve(__dirname, '..', 'assets', 'favicon.ico')));
 
 app.use('/assets', express.static(resolve(__dirname, '..', 'assets')));
 app.use('/build', express.static(resolve(__dirname, '..', 'build')));
+
+const template = lodashTemplate(readFileSync(resolve(__dirname, 'index.html'), 'utf8'));
 
 app.use((req, res) => {
   const location = createLocation(req.originalUrl);
@@ -68,6 +66,7 @@ app.use((req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.info('Listening on port %d', PORT);
+const port = config.port;
+app.listen(port, () => {
+  console.info('Listening on port %d', port);
 });
