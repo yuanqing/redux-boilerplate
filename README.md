@@ -13,8 +13,6 @@ $ npm start
 
 ## Todo
 
-- CSS modules
-- Linting
 - Tests
 - Code splitting / [dynamic routing](https://github.com/rackt/react-router/blob/master/docs/guides/advanced/DynamicRouting.md)
 - Authentication / sessions / authenticated API calls
