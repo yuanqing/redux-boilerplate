@@ -1,8 +1,12 @@
 var CleanPlugin = require('clean-webpack-plugin');
 var resolve = require('path').resolve;
 var readFileSync = require('fs').readFileSync;
+var webpack = require('webpack');
 
-var outputDirectory = resolve(__dirname, 'build');
+var config = require('./config');
+
+var outputDirectoryName = 'build';
+var outputPath = resolve(__dirname, outputDirectoryName);
 
 var babelrcPath = resolve(__dirname, '.babelrc');
 var babelrc = JSON.parse(readFileSync(babelrcPath, 'utf8'));
@@ -12,10 +16,14 @@ delete babelLoaderQuery.env;
 
 module.exports = {
   devtool: 'inline-source-map',
-  entry: './src/client.js',
+  entry: [
+    'webpack-hot-middleware/client',
+    './src/client'
+  ],
   output: {
-    path: outputDirectory,
+    path: outputPath,
     filename: 'bundle.js',
+    publicPath: 'http://' + config.host + ':' + config.port + '/' + outputDirectoryName
   },
   module: {
     loaders: [
@@ -39,6 +47,8 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanPlugin([outputDirectory])
+    new CleanPlugin([outputPath]),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
   ]
 };
