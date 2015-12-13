@@ -3,7 +3,7 @@ import createActions from '../create-actions'
 const GET_ALL_PRODUCTS = createActions('GET_ALL_PRODUCTS');
 
 const initialState = {
-  pending: false,
+  pending: true,
   products: []
 };
 
@@ -19,24 +19,21 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         pending: false,
-        products: payload
+        items: payload
       };
     case GET_ALL_PRODUCTS.FAILURE:
-      console.error('GET_PRODUCTS.FAILURE', payload);
+      console.error('GET_ALL_PRODUCTS.FAILURE', payload);
       return state;
     default:
       return state;
   }
 }
 
-export function getAllProducts(query) {
+export function getAllProducts() {
   return {
     types: GET_ALL_PRODUCTS,
     promise: (api) => {
-      return api.products.getAllProducts(query);
-    },
-    payload: {
-      query: query
+      return api.products.getAllProducts();
     }
   };
 }
