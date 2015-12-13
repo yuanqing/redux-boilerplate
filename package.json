@@ -11,7 +11,7 @@
   "scripts": {
     "build": "npm run clean && NODE_ENV=production webpack --config webpack/webpack-prod-config.js --colors --display-error-details --verbose",
     "clean": "rimraf build",
-    "dev": "concurrent --kill-others \"NODE_ENV=development node webpack/webpack-dev-server.js\" \"NODE_ENV=development node src/boot.js\"",
+    "dev": "concurrent --kill-others \"node webpack/webpack-dev-server.js\" \"node src/boot.js\"",
     "prod": "NODE_ENV=production node src/boot.js",
     "start": "npm run dev"
   },
