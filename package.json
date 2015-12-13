@@ -9,14 +9,11 @@
     "url": "git://github.com/yuanqing/redux-boilerplate.git"
   },
   "scripts": {
-    "build-dev": "webpack --config webpack-dev-config.js",
-    "start": "npm run build-dev && node src/boot.js"
+    "start": "concurrent --kill-others \"node webpack/webpack-dev-server.js\" \"node src/boot.js\""
   },
   "dependencies": {
-    "babel-core": "5.8.33",
-    "babel-loader": "5.3.3",
-    "babel-plugin-react-transform": "1.1.1",
     "compression": "1.6.0",
+    "css-loader": "0.23.0",
     "es6-promise": "3.0.2",
     "express": "4.13.3",
     "fetch-data": "0.0.2",
@@ -30,17 +27,30 @@
     "redux": "3.0.5",
     "redux-simple-router": "1.0.0",
     "redux-thunk": "1.0.0",
-    "serve-favicon": "2.3.0",
-    "webpack": "1.12.9"
+    "serve-favicon": "2.3.0"
   },
   "devDependencies": {
+    "babel-core": "5.8.33",
+    "babel-loader": "5.3.3",
+    "babel-plugin-react-transform": "1.1.1",
     "babel-runtime": "6.3.13",
     "clean-webpack-plugin": "0.1.5",
+    "concurrently": "1.0.0",
+    "extract-text-webpack-plugin": "0.9.1",
+    "json-loader": "0.5.4",
+    "node-sass": "3.4.2",
+    "piping": "0.3.0",
     "react-transform-catch-errors": "1.0.0",
     "react-transform-hmr": "1.0.1",
     "redbox-react": "1.2.0",
+    "redux-devtools": "2.1.5",
+    "sass-loader": "3.1.2",
+    "strip-loader": "0.1.0",
+    "style-loader": "0.13.0",
+    "webpack": "1.12.9",
     "webpack-dev-middleware": "1.4.0",
-    "webpack-hot-middleware": "2.6.0"
+    "webpack-hot-middleware": "2.6.0",
+    "webpack-isomorphic-tools": "2.2.21"
   },
   "private": true
 }
