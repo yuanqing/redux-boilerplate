@@ -33,7 +33,7 @@ app.use(serveFavicon(resolve(__dirname, '..', 'assets', 'favicon.ico')));
 app.use('/assets', express.static(resolve(__dirname, '..', 'assets')));
 app.use('/build', express.static(resolve(__dirname, '..', 'build')));
 
-const template = lodashTemplate(readFileSync(resolve(__dirname, 'index.html'), 'utf8'));
+const template = lodashTemplate(readFileSync(resolve(__dirname, 'template.html'), 'utf8'));
 
 app.use((req, res) => {
   const location = createLocation(req.originalUrl);
