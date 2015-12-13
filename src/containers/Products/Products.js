@@ -3,8 +3,8 @@ import DocumentMeta from 'react-document-meta';
 import { connect } from 'react-redux';
 import fetchData from 'fetch-data';
 
-import { getAllProducts } from '../modules/products'
-import Product from '../components/Product';
+import { getAllProducts } from '../../modules/products'
+import Product from '../../components/Product';
 
 @fetchData(((getState, dispatch) => {
   return Promise.all([
@@ -18,9 +18,10 @@ import Product from '../components/Product';
 
 export default class Products extends Component {
   render() {
+    const css = require('./Products.scss');
     var items = this.props.products.items;
     return items && items.length > 0 ? (
-      <div className="products">
+      <div className={css.Products}>
         <DocumentMeta title="Products" />
         {items.map((product) => {
           return (

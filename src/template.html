@@ -1,11 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    ${ meta }
+    <%= meta %>
+    <% styles.forEach(function(style) { %><link href="<%= style %>" rel="stylesheet" /><% }); %>
   </head>
   <body>
-    <div id="app">${ app }</div>
-    <script>window.__STATE__=${ state }</script>
-    <script src="${ javascriptPath }"></script>
+    <div id="app"><%= app %></div>
+    <script>window.__STATE__=<%= state %></script>
+    <script src="<%= script %>"></script>
   </body>
 </html>

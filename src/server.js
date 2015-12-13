@@ -51,15 +51,19 @@ export default function(webpackIsomorphicTools) {
           if (statusCode) {
             res.status(statusCode);
           }
+          const assets = webpackIsomorphicTools.assets();
           res.send(template({
             meta: DocumentMeta.renderAsHTML(),
+            styles: Object.keys(assets.styles).map((key) => {
+              return assets.styles[key];
+            }) || [],
             app: renderToString(
               <Provider store={store}>
                 <RoutingContext {...renderProps} />
               </Provider>
             ),
-            javascriptPath: webpackIsomorphicTools.assets().javascript.main,
-            state: JSON.stringify(store.getState())
+            state: JSON.stringify(store.getState()),
+            script: assets.javascript.main,
           }));
         })
         .catch((error) => {
