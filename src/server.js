@@ -17,8 +17,8 @@ import routes from './routes';
 import reducer from './reducer';
 import createStore from './create-store';
 
-const getStatusCode = (routes) => {
-  return routes.reduce((previousRoute, currentRoute) => {
+const getStatusCode = (matchedRoutes) => {
+  return matchedRoutes.reduce((previousRoute, currentRoute) => {
     return currentRoute.status || previousRoute;
   });
 };
@@ -66,8 +66,8 @@ export default function(webpackIsomorphicTools) {
             script: assets.javascript.main,
           }));
         })
-        .catch((error) => {
-          res.status(500).send(error.message);
+        .catch((fetchError) => {
+          res.status(500).send(fetchError.message);
         });
     });
   });

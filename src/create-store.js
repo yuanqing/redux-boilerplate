@@ -24,4 +24,4 @@ export default function(reducer, initialState) {
 
   return applyMiddleware(reduxThunk, apiMiddleware(api))(createStore)(reducer, initialState);
 
-};
+}

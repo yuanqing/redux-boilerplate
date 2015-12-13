@@ -1,12 +1,12 @@
-var express = require('express');
-var webpack = require('webpack');
-var webpackDevMiddleware = require('webpack-dev-middleware');
-var webpackHotMiddleware = require('webpack-hot-middleware');
+const express = require('express');
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 
-var config = require('../config').development.webpackDevServer;
-var webpackDevConfig = require('./webpack-dev-config');
+const config = require('../config').development.webpackDevServer;
+const webpackDevConfig = require('./webpack-dev-config');
 
-var webpackOptions = {
+const webpackOptions = {
   quiet: true,
   noInfo: true,
   hot: true,
@@ -22,14 +22,14 @@ var webpackOptions = {
   }
 };
 
-var app = express();
+const app = express();
 
-var compiler = webpack(webpackDevConfig);
+const compiler = webpack(webpackDevConfig);
 
 app.use(webpackDevMiddleware(compiler, webpackOptions));
 app.use(webpackHotMiddleware(compiler));
 
-app.listen(config.port, function(err) {
+app.listen(config.port, (err) => {
   if (err) {
     return console.error(err);
   }

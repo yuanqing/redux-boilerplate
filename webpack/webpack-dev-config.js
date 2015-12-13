@@ -1,18 +1,18 @@
-var readFileSync = require('fs').readFileSync;
-var resolve = require('path').resolve;
-var webpack = require('webpack');
-var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
+const readFileSync = require('fs').readFileSync;
+const resolve = require('path').resolve;
+const webpack = require('webpack');
+const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 
-var config = require('../config').development.webpackDevServer;
+const config = require('../config').development.webpackDevServer;
 
-var rootDirectory = resolve(__dirname, '..');
+const rootDirectory = resolve(__dirname, '..');
 
-var outputDirectoryName = 'build';
-var outputPath = resolve(rootDirectory, outputDirectoryName);
+const outputDirectoryName = 'build';
+const outputPath = resolve(rootDirectory, outputDirectoryName);
 
-var babelrcPath = resolve(rootDirectory, '.babelrc');
-var babelrc = JSON.parse(readFileSync(babelrcPath, 'utf8'));
-var babelLoaderQuery = Object.assign({}, babelrc,
+const babelrcPath = resolve(rootDirectory, '.babelrc');
+const babelrc = JSON.parse(readFileSync(babelrcPath, 'utf8'));
+const babelLoaderQuery = Object.assign({}, babelrc,
   babelrc.env && babelrc.env.development || {});
 babelLoaderQuery.extra['react-transform'].transforms.push({
   transform: 'react-transform-hmr',
@@ -21,8 +21,8 @@ babelLoaderQuery.extra['react-transform'].transforms.push({
 });
 delete babelLoaderQuery.env;
 
-var webpackIsomorphicToolsConfig = require('./webpack-isomorphic-tools-config');
-var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig);
+const webpackIsomorphicToolsConfig = require('./webpack-isomorphic-tools-config');
+const webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig);
 
 module.exports = {
   devtool: 'inline-source-map',

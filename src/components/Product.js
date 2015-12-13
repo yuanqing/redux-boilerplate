@@ -1,13 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
 export default class Product extends Component {
-
-  static propTypes = {
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired
-  }
-
   render() {
     return (
       <div className="product">
@@ -19,5 +12,10 @@ export default class Product extends Component {
       </div>
     );
   }
-
 }
+
+Product.propTypes = {
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired
+};

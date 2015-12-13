@@ -1,4 +1,4 @@
-import createActions from '../create-actions'
+import createActions from '../create-actions';
 
 const GET_ALL_PRODUCTS = createActions('GET_ALL_PRODUCTS');
 

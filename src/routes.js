@@ -5,7 +5,7 @@ import App from './containers/App/App';
 import Products from './containers/Products/Products';
 
 export default (
-  <Route path='/' component={App} >
+  <Route path="/" component={App} >
     <IndexRoute component={Products} />
   </Route>
 );

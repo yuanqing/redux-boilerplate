@@ -1,16 +1,16 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var resolve = require('path').resolve;
-var strip = require('strip-loader');
-var webpack = require('webpack');
-var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const resolve = require('path').resolve;
+const strip = require('strip-loader');
+const webpack = require('webpack');
+const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 
-var rootDirectory = resolve(__dirname, '..');
+const rootDirectory = resolve(__dirname, '..');
 
-var outputDirectoryName = 'build';
-var outputPath = resolve(rootDirectory, outputDirectoryName);
+const outputDirectoryName = 'build';
+const outputPath = resolve(rootDirectory, outputDirectoryName);
 
-var webpackIsomorphicToolsConfig = require('./webpack-isomorphic-tools-config');
-var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig);
+const webpackIsomorphicToolsConfig = require('./webpack-isomorphic-tools-config');
+const webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig);
 
 module.exports = {
   devtool: 'source-map',

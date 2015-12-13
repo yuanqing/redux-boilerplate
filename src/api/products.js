@@ -1,5 +1,5 @@
 import fetch from '../fetch';
 
-export function getAllProducts(query) {
+export function getAllProducts() {
   return fetch('products');
 }
