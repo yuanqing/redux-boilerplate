@@ -1,14 +1,7 @@
-var fs = require('fs');
+var readFileSync = require('fs').readFileSync;
+var resolve = require('path').resolve;
 
-var babelrc = fs.readFileSync('./.babelrc', 'utf8');
-
-var config;
-try {
-  config = JSON.parse(babelrc);
-} catch (err) {
-  console.error('Error parsing `.babelrc`.');
-  console.error(err);
-}
-
-require('babel-core/register')(config);
+var babelrcPath = resolve(__dirname, '.babelrc');
+var babelrc = JSON.parse(readFileSync(babelrcPath, 'utf8'));
+require('babel-core/register')(babelrc);
 require('./src/server');

@@ -1,21 +1,29 @@
-var path = require('path');
-var Clean = require('clean-webpack-plugin');
+var CleanPlugin = require('clean-webpack-plugin');
+var resolve = require('path').resolve;
+var readFileSync = require('fs').readFileSync;
 
-var BUILD_DIR = path.resolve(__dirname, 'build');
+var outputDirectory = resolve(__dirname, 'build');
+
+var babelrcPath = resolve(__dirname, '.babelrc');
+var babelrc = JSON.parse(readFileSync(babelrcPath, 'utf8'));
+var babelLoaderQuery = Object.assign({}, babelrc,
+  babelrc.env && babelrc.env.development || {});
+delete babelLoaderQuery.env;
 
 module.exports = {
+  devtool: 'inline-source-map',
   entry: './src/client.js',
   output: {
-    path: BUILD_DIR,
+    path: outputDirectory,
     filename: 'bundle.js',
   },
   module: {
     loaders: [
       {
-        test: /.jsx?$/,
+        test: /.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        query: { stage: 0 }
+        query: babelLoaderQuery
       }
     ]
   },
@@ -24,9 +32,13 @@ module.exports = {
       'src',
       'node_modules'
     ],
-    extensions: ['', '.js', '.json']
+    extensions: [
+      '',
+      '.js',
+      '.json'
+    ]
   },
   plugins: [
-    new Clean([BUILD_DIR])
+    new CleanPlugin([outputDirectory])
   ]
 };
